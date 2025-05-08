@@ -22,6 +22,18 @@ void Jogando_Forca(Estado_Do_Jogo jogo){ //função para iniciar o jogo e ela re
             Salvamento_Estado_Do_Jogo(jogo);
             return;   //apos o salvamento o jogo e terminado 
         }
+        if(strlen(tentativa) > 1){   //if para ler se a palavra digitada tiver mais de 1 caractere e se tiver ela e reconhecida como tentativa de acertar a palavra inteira
+            if(strcmp(tentativa, jogo.palavra_secreta) == 0){   //se a tentativa for igual a palavra escolhida aparece a mensagem de vitoria
+                printf("\nParabens Voce acertou a palavra: %s\n", jogo.palavra_secreta);   //mostra a palavra para comprovar que voce acertou
+                registrar_log("Acertou a palavra completa");    //armazenar no log que ffoi acertada uma palavra
+                return;
+            } else {
+                printf("Palavra incorreta!\n");   //se  a palavra que foi chutada esta incorreta aparece essa parte e mostra que voce errou
+                registrar_log("Errou a palavra completa");  //registra no log que a palavra que o usuario digitou esta incorreta
+                jogo.tentativas_restantes--;  //diminui uma tentativa do contador e volta  pro while
+                continue;
+            }
+        }
     }
 }
 
