@@ -33,7 +33,26 @@ void Jogando_Forca(Estado_Do_Jogo jogo){ //função para iniciar o jogo e ela re
                 jogo.tentativas_restantes--;  //diminui uma tentativa do contador e volta  pro while
                 continue;
             }
+        }else {  //else usado  para mostrar que se  o caractere for so uma letra essa parte e iniciada
+            letra = tentativa[0]; //salva o caractere em letra
+            int acertou = 0;  //cria o int acertou para verificar  se a letra aparece na palavra
+            for (i = 0; i < tamanho; i++) {  //usa o i para percorrer a palavra secreta
+                if (jogo.palavra_secreta[i] == letra && jogo.palavra_usuario[i] == '_') {  //if para verificar se o caractere  esta presente na palavra secreta e se for descoberta substitui o '-' pelo caractere
+                    jogo.palavra_usuario[i] = letra;
+                    jogo.acertos++;  //incremento de acertos
+                    acertou = 1;
+                }
+            }
+            if (!acertou) {  //se a variavel acertou ainda estiver 0 significa que o caractere estava incorreto
+                printf("Letra incorreta!\n");   //fala pro usuario que esta errada
+                jogo.tentativas_restantes--;   //diminui o numero de tentativas restantes
+            }
         }
+    }
+    if (jogo.tentativas_restantes == 0) {   //se o numero de tentativas chegar a zero o jogo e encerrado com uma mensagem de derrota e  mostra a palavra secreta
+        printf("\nVocê perdeu! A palavra era: %s\n", jogo.palavra_secreta);  
+    } else if (jogo.acertos == tamanho) {  //se aa variavel acertor for igual ao tamanho da palavra mostra que o usuario acertou a palavra secrete e da os parabens ao jogador
+        printf("\nParabéns! Você acertou a palavra: %s\n", jogo.palavra_secreta);
     }
 }
 
