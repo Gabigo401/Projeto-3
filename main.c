@@ -19,6 +19,11 @@ void escolha_De_Palavra(int tentativas_maximas, int tamanho_maximo_palavra){
         contador++;  //incrementa o contador apor cada palavra lida
     }
     fclose(arquivo);   //fecha o arquivo apos a leitura
+
+    if(contador == 0){   //se o contador estiver 0 esse if e usado
+        printf("O arquivo esta vazio");   //fala que o arquivo ta vazio
+        return;
+    }
 }
 
 int main(){
