@@ -13,3 +13,6 @@ Número limitado de tentativas
 Interface amigável com instruções e comandos
 
 As instruções de como jogar serão mostradas ao iniciar  o programa
+
+Gabriel Isai Soliz Choque
+RA: 24.124.034-0
