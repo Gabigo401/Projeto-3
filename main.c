@@ -23,6 +23,22 @@ int main(){
     printf("1 - Novo jogo\n2 - Continuar jogo salvo\n0 - Sair\n");   //mostra as opções para o jogador entre um novo jogo, carregar um jogo salvo ou sair do programa
 	scanf("%d", &escolha);   //le e salva a escolha do jogador no endereço de escolha
 
+    int tentativas_maximas, tamanho_maximo_palavra;  //int para duas variaveis que e as tentativas maximas e o tamanho maximo
+    Tentativas_E_TamanhoMaximo(&tentativas_maximas, &tamanho_maximo_palavra);  //chama a função que declara o tamanho delas ja na função e usa ponteiro nelas
+	
+	if (escolha == 1) {  //verifica se  o usuario escolheu jogo novo
+        escolha_De_Palavra(tentativas_maximas, tamanho_maximo_palavra);  //se for jogo novo chamar a função para escolher uma palavra do arquivo txt e inicia o jogo
+    } else if (escolha == 2) {  //se a escolha for 2
+        Estado_Do_Jogo jogo;   //declara uma variavel estaddo de jogo chamado jogo para armazenar  o estado carregado do arquivo
+        if (carregamento_do_jogo(&jogo)) {  //carrega o arquivo bin aonde foi salvo alguma partida anterior
+            printf("Jogo carregado com sucesso!\n");
+            Jogando_Forca(jogo);  //começa o jogo da onde o ultimo parou
+        } else {
+            printf("Nenhum jogo salvo encontrado.\n");  //aparece isso se nada foi salvo no arquivo
+        }
+    } else {
+        printf("Saindo do programa.\n"); //se for 0 o jogo e fechado 
+    }
     system("pause");
     return 0;
 }
