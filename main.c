@@ -24,6 +24,20 @@ void escolha_De_Palavra(int tentativas_maximas, int tamanho_maximo_palavra){
         printf("O arquivo esta vazio");   //fala que o arquivo ta vazio
         return;
     }
+    srand(time(NULL));   //inicio o gerador de numeros aleatorios
+    int indice_aleatorio = rand() % contador;  //escolhe um indice aleatorio entre 0 e o contador -1
+    Estado_Do_Jogo novo_jogo;   //cria uma variavel novo_jogo a partir da do Estado_Do_Jogo
+    strcpy(novo_jogo.palavra_secreta, lista[indice_aleatorio]);  //copia a palavra aleatorio escolhida da lista do arquivo e armazena na variavel palavra_secreta
+    int tamanho = strlen(novo_jogo.palavra_secreta);  //usado para calcular o numero de letras que esta armazenado no palavra_secreta
+    novo_jogo.tentativas_restantes = tentativas_maximas;    //inicia o numero de tentativas permitidas e ela so diminui se a pessoa errar uma letra
+    novo_jogo.acertos = 0;  //inicio o contador de acertos
+    int i;
+
+    if(i = 0; i < tamanho; i++){   //usa a variavel i para percorrer a string palavra_usuario
+        novo_jogo.palavra_usuario[i] = '-';  //preence a string palavra_usuario com '-' em todas as posições para mostrar que nenhuma letra foi descoberta ainda
+    }
+    novo_jogo.palavra_usuario[tamanho] = '\0';  //adiciona o \0 para finalizar a string
+    Jogando_Forca(novo_jogo);  //chama a função Jogando_Forca passando o novo_jogo preenchido e executando o jogo apos isso
 }
 
 int main(){
