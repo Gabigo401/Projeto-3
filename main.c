@@ -37,8 +37,8 @@ void registrar_log(const char *mensagem) {  //função para salvar todas as aç�
         fprintf(log, "%s\n", mensagem);  //escreve no arquivo a mensagem
         fclose(log);  //fecha o arquivo
     }
-
-  void Jogando_Forca(Estado_Do_Jogo jogo){ //função para iniciar o jogo e ela recebe a estrutura  do tipo Estado_Do_Jogo que e todas as informações  do estado atual do jogo
+}
+void Jogando_Forca(Estado_Do_Jogo jogo){ //função para iniciar o jogo e ela recebe a estrutura  do tipo Estado_Do_Jogo que e todas as informações  do estado atual do jogo
     int tamanho = strlen(jogo.palavra_secreta);  //calcula o tamanho da palavra secreta e ela fica armazenada no int tamanho 
     char tentativa[100];  //char que vai armazenar oque o usuario digitar, que pode ser uma letra ou palavra 
     int i;   //int que vai ser usado nos loops
@@ -53,7 +53,7 @@ void registrar_log(const char *mensagem) {  //função para salvar todas as aç�
 
         registrar_log(tentativa);   //chama a função 'registrar_log' e salva no log.txt
 
-        if(strcmp(tentativa, '1') == 0){   //se o jogador escolher a opção de salvar o jogo ele e salvo chamando a função criada para salvar o jogo 
+        if(strcmp(tentativa, "1") == 0){   //se o jogador escolher a opção de salvar o jogo ele e salvo chamando a função criada para salvar o jogo 
             Salvamento_Estado_Do_Jogo(jogo);
             return;   //apos o salvamento o jogo e terminado 
         }
@@ -91,12 +91,12 @@ void registrar_log(const char *mensagem) {  //função para salvar todas as aç�
     }
 }
  
-  void Tentativas_E_TamanhoMaximo(int *tentativas_maximas, int *tamanho_maximo_palavra){ //função para determinar o tamanho maximo da palavras e as tentativas
+void Tentativas_E_TamanhoMaximo(int *tentativas_maximas, int *tamanho_maximo_palavra){ //função para determinar o tamanho maximo da palavras e as tentativas
     *tentativas_maximas = 10;  //valor de 10 para as tentativas
     *tamanho_maximo_palavra = 100;   //valor de 100 para o tamanho da palavra
  }
 
-  void escolha_De_Palavra(int tentativas_maximas, int tamanho_maximo_palavra){
+void escolha_De_Palavra(int tentativas_maximas, int tamanho_maximo_palavra){
     FILE *arquivo = fopen("palavras.txt", "r");  //abrindo um arquivo txt com as palavras que vão ser escolhidas aleatoriamente para serem adivinhadas
     
     if(arquivo == NULL){   //if se o arquivo não for aberto
@@ -126,8 +126,8 @@ void registrar_log(const char *mensagem) {  //função para salvar todas as aç�
     novo_jogo.acertos = 0;  //inicio o contador de acertos
     int i;
 
-    if(i = 0; i < tamanho; i++){   //usa a variavel i para percorrer a string palavra_usuario
-        novo_jogo.palavra_usuario[i] = '-';  //preence a string palavra_usuario com '-' em todas as posições para mostrar que nenhuma letra foi descoberta ainda
+    for(i = 0; i < tamanho; i++){   //usa a variavel i para percorrer a string palavra_usuario
+        novo_jogo.palavra_usuario[i] = '_';  //preence a string palavra_usuario com '-' em todas as posições para mostrar que nenhuma letra foi descoberta ainda
     }
     novo_jogo.palavra_usuario[tamanho] = '\0';  //adiciona o \0 para finalizar a string
     Jogando_Forca(novo_jogo);  //chama a função Jogando_Forca passando o novo_jogo preenchido e executando o jogo apos isso
